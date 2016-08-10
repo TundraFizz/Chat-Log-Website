@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en"> 
   <head>
-    <title>Testing</title>
+    <title>Bot for Youmu</title>
     <meta charset="utf-8">
     <meta name="author"       content="Leif Coleman">
     <meta name="description"  content="Discord Bot Chat Log Web App">
     <link rel="shortcut icon" href="{{request.static_url('web:static/icon.png')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   
   <body style="margin-bottom:20px;">
-    {{debug}}
+    {{html|safe}}
+    <pre id="text"></pre>
   </body>
 </html>
 
 <script>
-
+function ReadFile(obj)
+{
+  $.ajax(
+  {
+    url:      "readfile",
+    type:     "POST",
+    dataType: "json",
+    data:
+    {
+      file: $(obj).attr("file")
+    }, success: function(data)
+    {
+      $("#text").text(data["text"]);
+    }
+  });
+}
 </script>
