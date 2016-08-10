@@ -1,15 +1,13 @@
 from pyramid.view import view_config
 import json
+from time import sleep
 import os
 
 
 @view_config(route_name="index", renderer="templates/index.jinja2")
 def index(request):
     data = {"html": ""}
-    year = "2016"
-    week = "32"
     server = "212914826169679872"
-    str = "year" + "-" + "week" + "-" + "server"
 
     for file in os.listdir("log"):
         name = file[8:26]

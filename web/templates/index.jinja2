@@ -1,3 +1,15 @@
+<style>
+#nav{
+  display: table;
+  height: 26px;}
+#loading{
+  display: none;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  background-image: url({{request.static_url('web:static/loading.gif')}})}
+</style>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en"> 
   <head>
@@ -9,8 +21,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   
-  <body style="margin-bottom:20px;">
-    {{html|safe}}
+  <body>
+    <div id="nav">{{html|safe}}<span id="loading"></span></div>
     <pre id="text"></pre>
   </body>
 </html>
@@ -18,6 +30,7 @@
 <script>
 function ReadFile(obj)
 {
+  $("#loading").css("display", "inline-block");
   $.ajax(
   {
     url:      "readfile",
@@ -28,6 +41,7 @@ function ReadFile(obj)
       file: $(obj).attr("file")
     }, success: function(data)
     {
+      $("#loading").css("display", "none");
       $("#text").text(data["text"]);
     }
   });
