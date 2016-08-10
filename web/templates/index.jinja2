@@ -1,28 +1,64 @@
 <style>
-#nav{
-  display: table;
-  height: 26px;}
-#loading{
-  display: none;
-  width: 24px;
-  height: 24px;
+@-webkit-keyframes root {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+@-moz-keyframes root {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+@-o-keyframes root {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+@keyframes root {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+object {
+  -webkit-animation: root 1.5s infinite;        /* Safari 4+      */
+  -moz-animation:    root 1.5s infinite;        /* Fx 5+          */
+  -o-animation:      root 1.5s infinite;        /* Opera 12+      */
+  -o-transform:      root 1.5s infinite;        /* Opera 12+      */
+  animation:         root 1.5s infinite linear; /* IE 10+, Fx 29+ */
+}
+button {
   vertical-align: middle;
-  background-image: url({{request.static_url('web:static/loading.gif')}})}
+  display: inline-block;
+  margin: 0px 1px;
+}
+#nav {
+  display: table;
+  height: 28px;
+}
+#loading {
+  width: 26px;
+  height: 26px;
+  background-image: url({{request.static_url('web:static/loading.svg')}})
+}
+.btnwrapper {
+  display: table-cell;
+  padding-right: 4px;
+  vertical-align: middle;
+}
 </style>
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en"> 
+<html dir="ltr" lang="en">
   <head>
     <title>Bot for Youmu</title>
     <meta charset="utf-8">
     <meta name="author"       content="Leif Coleman">
     <meta name="description"  content="Discord Bot Chat Log Web App">
-    <link rel="shortcut icon" href="{{request.static_url('web:static/icon.png')}}">
+    <link rel="shortcut icon" type="image/png" href="{{request.static_url('web:static/icon.png')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   
   <body>
-    <div id="nav">{{html|safe}}<span id="loading"></span></div>
+    <div id="nav">
+    <div class="btnwrapper">{{html|safe}}</div>
+    <object id="loading" type="image/svg+xml"></object></div>
     <pre id="text"></pre>
   </body>
 </html>

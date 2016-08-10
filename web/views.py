@@ -14,7 +14,7 @@ def index(request):
         if name == server:
             channel = file[27:-4]
             data["html"] += """<button type="button" onclick="ReadFile(this);"
-                            file="{}">{}</button>""".format(file, channel)
+                               file="{}">{}</button>""".format(file, channel)
 
     return data
 
@@ -26,4 +26,5 @@ def readfile(request):
     with open("log/" + file, "r") as f:
         data["text"] = f.read()
 
+    sleep(.25)
     return data
