@@ -1,0 +1,16 @@
+MANIFEST.in
+READme.txt
+changes.txt
+development.ini
+production.ini
+pytest.ini
+setup.py
+app/__init__.py
+app/views.py
+app.egg-info/PKG-INFO
+app.egg-info/SOURCES.txt
+app.egg-info/dependency_links.txt
+app.egg-info/entry_points.txt
+app.egg-info/not-zip-safe
+app.egg-info/requires.txt
+app.egg-info/top_level.txt

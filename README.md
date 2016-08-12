@@ -1,1 +1,1 @@
-# dbot-chat-log-web
+# dbot-chat-log-app
