@@ -3,5 +3,6 @@
 ### Introduction:
 This is intended for use with [Discord Bot Chat Log](https://github.com/TundraFizz/dbot-chat-log).
 
-###ToDo:
- * Create login interface (currently the server is hard-coded)
+### ToDo:
+ * Replace @Mention ID numbers with their name
+ * Example would be to replace <@204383992944787456> with Tundra
