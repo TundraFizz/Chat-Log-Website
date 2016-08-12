@@ -1,4 +1,5 @@
 from pyramid.view import view_config
+from collections import deque
 import datetime
 import time
 import json
@@ -8,7 +9,8 @@ import os
 @view_config(route_name="index", renderer="templates/index.jinja2")
 def index(request):
     data = {"html": "", "log_history": ""}
-    log_history = []
+    #log_history = []
+    log_history = deque()
 
     if "server" in request.GET:
         server = request.GET["server"]
@@ -32,7 +34,7 @@ def index(request):
         name = file[8:26]
 
         if name == server and "{}-{}".format(year, week) not in log_history:
-            log_history.append("{}-{}".format(year, week))
+            log_history.appendleft("{}-{}".format(year, week))
 
         if name == server and week == this_week and year == this_year:
             channel = file[27:-4]
@@ -43,17 +45,20 @@ def index(request):
     data["log_history"] += """
         <form style="display: inline">
         <input type="hidden" name="server" value="{}">
-        <select name="log" onchange="this.form.submit()" style="vertical-align: middle;">""".format(server)
+        <select name="log" onchange="this.form.submit()">""".format(server)
 
     for lg in log_history:
-        # If year-week matches, set to selected
+        print(lg)
+        # If the year and week matches, set to selected
         selected = ""
         compare = "{}-{}".format(this_year, this_week)
         if compare == lg:
             selected = "selected"
 
         data["log_history"] += """
-        <option {} value="{}">{}</option>""".format(selected, lg, get_day_range(lg))
+        <option {} value="{}">{}</option>""".format(selected,
+                                                    lg,
+                                                    get_day_range(lg))
 
     data["log_history"] += """
     </select></form>"""
