@@ -9,7 +9,6 @@ import os
 @view_config(route_name="index", renderer="templates/index.jinja2")
 def index(request):
     data = {"html": "", "log_history": ""}
-    #log_history = []
     log_history = deque()
 
     if "server" in request.GET:
