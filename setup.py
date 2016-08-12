@@ -21,9 +21,9 @@ tests_require = [
     'pytest-cov',
     ]
 
-setup(name='web',
+setup(name='app',
       version='0.0',
-      description='web',
+      description='app',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
@@ -44,6 +44,6 @@ setup(name='web',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = web:main
+      main = app:main
       """,
       )
