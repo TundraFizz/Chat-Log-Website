@@ -28,20 +28,21 @@ def index(request):
         <input type="text" name="server"><input type="submit" value="Submit">
         </form>"""}
 
-    files = [y for x in os.walk("log") for y in glob(os.path.join(x[0], "*.log"))]
+    print(this_year + " | " + this_week)
+    server_dir = "log/{}".format(server)
+    files = [y for x in os.walk(server_dir) for y in glob(os.path.join(x[0], "*.log"))]
 
     for file in files:
-        temp = file[31:]
+        print(file)
+        temp = file[31:] # Warning: Server ID's length may not always be 18!
         year = temp[0:4]
         week = temp[5:7]
-        name = temp[8:26]
 
-        if name == server and "{}-{}".format(year, week) not in log_history:
+        if "{}-{}".format(year, week) not in log_history:
             log_history.appendleft("{}-{}".format(year, week))
 
-        if name == server and week == this_week and year == this_year:
-            print("---------------------")
-            channel = temp[27:-4]
+        if week == this_week and year == this_year:
+            channel = temp[8:-4]
             data["html"] += """
             <button type="button" onclick="ReadFile(this);"
             file="{}">{}</button>""".format(file, channel)
@@ -52,7 +53,6 @@ def index(request):
         <select name="log" onchange="this.form.submit()">""".format(server)
 
     for lg in log_history:
-        print(lg)
         # If the year and week matches, set to selected
         selected = ""
         compare = "{}-{}".format(this_year, this_week)
