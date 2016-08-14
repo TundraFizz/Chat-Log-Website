@@ -4,6 +4,7 @@ import datetime
 import time
 import json
 import os
+from glob import glob
 
 
 @view_config(route_name="index", renderer="templates/index.jinja2")
@@ -27,16 +28,20 @@ def index(request):
         <input type="text" name="server"><input type="submit" value="Submit">
         </form>"""}
 
-    for file in os.listdir("log"):
-        year = file[0:4]
-        week = file[5:7]
-        name = file[8:26]
+    files = [y for x in os.walk("log") for y in glob(os.path.join(x[0], "*.log"))]
+
+    for file in files:
+        temp = file[31:]
+        year = temp[0:4]
+        week = temp[5:7]
+        name = temp[8:26]
 
         if name == server and "{}-{}".format(year, week) not in log_history:
             log_history.appendleft("{}-{}".format(year, week))
 
         if name == server and week == this_week and year == this_year:
-            channel = file[27:-4]
+            print("---------------------")
+            channel = temp[27:-4]
             data["html"] += """
             <button type="button" onclick="ReadFile(this);"
             file="{}">{}</button>""".format(file, channel)
@@ -93,7 +98,7 @@ def get_day_range(lg):
 def readfile(request):
     file = request.POST.get("file")
     data = {"text": "Error"}
-    with open("log/" + file, encoding="utf8") as f:
+    with open(file, encoding="utf8") as f:
         data["text"] = f.read()
 
     return data
