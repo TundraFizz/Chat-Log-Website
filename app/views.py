@@ -1,16 +1,21 @@
 from pyramid.view import view_config
 from collections import deque
+from ntpath import basename
+from glob import glob
+import configparser
 import datetime
 import time
 import json
 import os
-from glob import glob
 
 
 @view_config(route_name="index", renderer="templates/index.jinja2")
 def index(request):
     data = {"html": "", "log_history": ""}
     log_history = deque()
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+    path = config.get("chat_log", "path")
 
     if "server" in request.GET:
         server = request.GET["server"]
@@ -28,21 +33,20 @@ def index(request):
         <input type="text" name="server"><input type="submit" value="Submit">
         </form>"""}
 
-    print(this_year + " | " + this_week)
-    server_dir = "log/{}".format(server)
+    server_dir = "{}{}".format(path, server)
     files = [y for x in os.walk(server_dir) for y in glob(os.path.join(x[0], "*.log"))]
-
+    print(server_dir)
     for file in files:
         print(file)
-        temp = file[31:] # Warning: Server ID's length may not always be 18!
-        year = temp[0:4]
-        week = temp[5:7]
+        filename = basename(file)
+        year = filename[0:4]
+        week = filename[5:7]
 
         if "{}-{}".format(year, week) not in log_history:
             log_history.appendleft("{}-{}".format(year, week))
 
         if week == this_week and year == this_year:
-            channel = temp[8:-4]
+            channel = filename[8:-4]
             data["html"] += """
             <button type="button" onclick="ReadFile(this);"
             file="{}">{}</button>""".format(file, channel)
@@ -53,7 +57,7 @@ def index(request):
         <select name="log" onchange="this.form.submit()">""".format(server)
 
     for lg in log_history:
-        # If the year and week matches, set to selected
+        # Set default selected option to this week
         selected = ""
         compare = "{}-{}".format(this_year, this_week)
         if compare == lg:
