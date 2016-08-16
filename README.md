@@ -4,46 +4,9 @@
 This is intended for use with [Discord Bot Chat Log](https://github.com/TundraFizz/dbot-chat-log).
 
 ### ToDo:
+ * Enable logging of edited posts
  * Replace @Mention ID numbers with their name
   * Example: Replace <@204383992944787456> with Tundra
- * Change directory structure
-``` 
-log
-├ 149594743393878017
-│ ├ 2016
-│ │ ├ 49
-│ │ │ ├ announcements
-│ │ │ ├ general
-│ │ │ └ other
-│ │ ├ 50
-│ │ │ ├ announcements
-│ │ │ ├ general
-│ │ │ └ other
-│ │ ├ 51
-│ │ │ ├ announcements
-│ │ │ ├ general
-│ │ │ └ other
-│ │ └ 52
-│ │   ├ announcements
-│ │   ├ general
-│ │   └ other
-│ └ 2017
-│   ├ 01
-│   │ ├ announcements
-│   │ ├ general
-│   │ └ other
-│   ├ 02
-│   │ ├ announcements
-│   │ ├ general
-│   │ └ other
-│   ├ 03
-│   │ ├ announcements
-│   │ ├ general
-│   │ └ other
-│   └ 04
-│     ├ announcements
-│     ├ general
-│     └ other
-├ 124589462578425648
-└ 118236457015129862
-```
+ * Right now if you don't enter anything in for the server ID and submit, it will default to the server with the greatest ID
+  * Change this so that it gives an error telling the user they must put an ID in
+  * Also give an error if the server was not found in the directory
