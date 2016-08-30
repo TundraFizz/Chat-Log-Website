@@ -3,7 +3,7 @@
 ### Introduction:
 This is intended for use with [Discord Bot Chat Log](https://github.com/TundraFizz/dbot-chat-log).
 
-### ToDo:
+### Todo:
  * Enable logging of edited posts
  * Replace @Mention ID numbers with their name
   * Example: Replace <@204383992944787456> with Tundra
