@@ -1,12 +1,23 @@
-# Discord Bot Chat Log Web ![](https://img.shields.io/badge/Python-3.4-3572A5.svg?style=plastic) ![](https://img.shields.io/badge/Status-In%20Development-EE7600.svg?style=plastic)
+# NodeJS-Template ![](https://img.shields.io/badge/Node.JS-6.9.1-3572A5.svg?style=plastic) ![](https://img.shields.io/badge/Status-Completed-008000.svg?style=plastic)
 
-### Introduction:
-This is intended for use with [Discord Bot Chat Log](https://github.com/TundraFizz/dbot-chat-log).
+### **Table of Contents**
+1. [**Installing and Running**](#1-installing-and-running)
 
-### Todo:
- * Enable logging of edited posts
- * Replace @Mention ID numbers with their name
-  * Example: Replace <@204383992944787456> with Tundra
- * Right now if you don't enter anything in for the server ID and submit, it will default to the server with the greatest ID
-  * Change this so that it gives an error telling the user they must put an ID in
-  * Also give an error if the server was not found in the directory
+---
+### **1. Installing and Running**
+
+To install the project, run these commands:
+
+```bash
+sudo yum -y install git
+mkdir myapp
+cd myapp
+git clone https://github.com/TundraFizz/NodeJS-Template.git .
+. install.sh
+```
+
+Once the template has been installed, you can can run the command ```. server``` to have it automatically manage your server, or you can do it manually by running one of these two commands.
+
+```nodemon server.js``` to run the server in development mode. You can stop the server by either pressing Ctrl+C or closing the terminal.
+
+```nohup node server.js &``` to run the server in production mode. Your server will continue to run even when the terminal is closed.

@@ -1,0 +1,80 @@
+<style>
+/* Load custom fonts */
+@font-face {
+  font-family: days-sans;
+  src: url(/days_sans.otf);
+}
+
+/* 500+ */
+@media (min-width: 500px) {
+  .error-404-top {
+    font-size: 200px;
+  }
+
+  .error-404-bot {
+    font-size: 36px;
+  }
+
+  .content {
+    font-size: 16px;
+  }
+}
+
+/* 1-499 */
+@media (max-width: 499px) {
+  .error-404-top {
+    font-size: 100px;
+  }
+
+  .error-404-bot {
+    font-size: 20px;
+  }
+
+  .content {
+    font-size: 8px;
+  }
+}
+
+.container-outer {
+  display:     table;
+  width:       100%;
+  height:      80%;
+  font-family: days-sans;
+}
+
+.container-inner {
+  display:        table-cell;
+  vertical-align: middle;
+  text-align:     center;
+}
+
+.error-404 {
+  display:          block;
+  width:            100vw;
+  height:           100vh;
+  margin:           0;
+  background-color: #ccc;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>404 File not found</title>
+    <meta charset="utf-8">
+    <meta name="description"  content="Error: 404">
+    <meta name="author"       content="Tundra Fizz">
+    <link rel="shortcut icon" href="/icon.png">
+    <link rel="stylesheet"    href="/theme.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  </head>
+
+  <body class="error-404">
+    <div class="container-outer">
+      <div class="container-inner">
+        <div class="error-404-top">404</div>
+        <div class="error-404-bot">File not found</div>
+      </div>
+    </div>
+  </body>
+</html>

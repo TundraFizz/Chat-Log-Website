@@ -36,9 +36,10 @@ select {
   height: 28px;
 }
 #loading {
+  display: none;
   width: 26px;
   height: 26px;
-  background-image: url({{request.static_url('app:static/loading.svg')}})
+  background-image: url("/loading.svg");
 }
 .btnwrapper {
   display: table-cell;
@@ -52,15 +53,15 @@ select {
   <head>
     <title>Chat Logs</title>
     <meta charset="utf-8">
-    <meta name="author"       content="Leif Coleman">
+    <meta name="author"       content="Tundra Fizz">
     <meta name="description"  content="Discord Bot Chat Log Web App">
-    <link rel="shortcut icon" type="image/png" href="{{request.static_url('app:static/icon.png')}}">
+    <link rel="shortcut icon" type="image/png" href="/icon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
-  
+
   <body>
     <div id="nav">
-    <div class="btnwrapper">{{log_history|safe}}{{html|safe}}</div>
+    <div class="btnwrapper"><%- log_history %><%- html %></div>
     <object id="loading" type="image/svg+xml"></object></div>
     <pre id="text"></pre>
   </body>
@@ -70,18 +71,15 @@ select {
 function ReadFile(obj)
 {
   $("#loading").css("display", "inline-block");
-  $.ajax(
-  {
+  $.ajax({
     url:      "readfile",
     type:     "POST",
     dataType: "json",
-    data:
-    {
+    data:{
       file: $(obj).attr("file")
-    }, success: function(data)
-    {
+    }, success: function(data){
       $("#loading").css("display", "none");
-      $("#text").text(data["text"]);
+      $("#text").text(data);
     }
   });
 }
