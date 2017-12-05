@@ -6,9 +6,9 @@
   "author": "Tundra Fizz",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "1.9.2",
-    "express": "^4.14.0",
-    "ejs": "^1.0.0"
+    "body-parser": "latest",
+    "express": "latest",
+    "ejs": "latest"
   },
   "scripts": {
     "start": "node server.js"
